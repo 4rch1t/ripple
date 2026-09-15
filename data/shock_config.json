@@ -1,0 +1,40 @@
+{
+  "hero_sku": "SKU0",
+  "escalation_sku": "SKU1",
+  "events": [
+    {
+      "sku": "SKU0",
+      "city": "Bangalore",
+      "facility_suffixes": [
+        "HOSP"
+      ],
+      "start_day": 95,
+      "end_day": 111,
+      "multiplier": 1.35
+    },
+    {
+      "sku": "SKU0",
+      "city": "Bangalore",
+      "facility_suffixes": [
+        "HOSP",
+        "PHC",
+        "PHARM"
+      ],
+      "start_day": 112,
+      "end_day": 149,
+      "multiplier": 3.2
+    },
+    {
+      "sku": "SKU1",
+      "city": "Delhi",
+      "facility_suffixes": [
+        "HOSP",
+        "PHC",
+        "PHARM"
+      ],
+      "start_day": 108,
+      "end_day": 149,
+      "multiplier": 2.8
+    }
+  ]
+}

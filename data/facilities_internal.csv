@@ -1,0 +1,16 @@
+facility_id,name,latitude,longitude,type,population_served,city
+BOM-HOSP,Mumbai Hospital,19.11983,72.86792,hospital,197631,Mumbai
+BOM-PHC,Mumbai Phc,19.10758,72.81277,PHC,82929,Mumbai
+BOM-PHARM,Mumbai Pharmacy,19.1521,72.91948,pharmacy,23784,Mumbai
+CCU-HOSP,Kolkata Hospital,22.5131,88.35596,hospital,236467,Kolkata
+CCU-PHC,Kolkata Phc,22.55193,88.43218,PHC,79078,Kolkata
+CCU-PHARM,Kolkata Pharmacy,22.62424,88.35485,pharmacy,22165,Kolkata
+DEL-HOSP,Delhi Hospital,28.66046,77.11123,hospital,247667,Delhi
+DEL-PHC,Delhi Phc,28.75652,77.12357,PHC,43190,Delhi
+DEL-PHARM,Delhi Pharmacy,28.74539,77.07922,pharmacy,9494,Delhi
+BLR-HOSP,Bangalore Hospital,13.0345,77.63914,hospital,256776,Bangalore
+BLR-PHC,Bangalore Phc,12.92274,77.58928,PHC,64889,Bangalore
+BLR-PHARM,Bangalore Pharmacy,12.91629,77.62389,pharmacy,8963,Bangalore
+MAA-HOSP,Chennai Hospital,13.12186,80.3455,hospital,195193,Chennai
+MAA-PHC,Chennai Phc,13.06197,80.26583,PHC,56291,Chennai
+MAA-PHARM,Chennai Pharmacy,13.03302,80.21149,pharmacy,23102,Chennai

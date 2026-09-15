@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Regional Medicine Shortage Detection</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  :root {
+    --critical:#c0392b; --warning:#b8860b; --normal:#2e7d46; --accent:#3f6fd1;
+    --bg:#0a0b0e; --panel:#13151a; --panel2:#191c22; --border:#2c3038; --text:#e6e7ea; --muted:#8b8f98;
+    --mono: Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  * { box-sizing:border-box; border-radius:0 !important; }
+  html, body { margin:0; height:100%; font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); }
+  #app { display:flex; flex-direction:column; height:100vh; }
+
+  #header { flex:0 0 auto; display:flex; align-items:stretch; background:var(--panel); border-bottom:2px solid var(--border); }
+  #header h1 { font-size:13px; margin:0; padding:14px 16px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; border-right:1px solid var(--border); display:flex; align-items:center; }
+  #header .subtitle { font-size:11px; color:var(--muted); margin-right:auto; padding:14px 16px; font-family:var(--mono); display:flex; align-items:center; }
+  .hdr-btn { background:var(--panel2); color:var(--text); border:0; border-left:1px solid var(--border); padding:0 20px; font-size:11px; cursor:pointer; text-transform:uppercase; letter-spacing:.06em; font-weight:700; }
+  .hdr-btn:hover { background:#20242c; }
+
+  .header-legend { display:flex; gap:16px; margin-right:auto; padding:0 16px; font-size:10.5px; color:var(--muted); font-family:var(--mono); align-items:center; }
+  .header-legend .dot { display:inline-block; width:9px; height:9px; margin-right:5px; vertical-align:middle; }
+
+  #selected-bar { flex:0 0 auto; padding:8px 16px; font-size:11px; font-family:var(--mono); background:var(--panel2); border-bottom:2px solid var(--border); color:var(--muted); }
+  #selected-bar b { color:var(--text); }
+  #selected-bar.empty { color:var(--muted); font-style:normal; }
+
+  /* 5-window grid: map + panel 1/2 column on top, panels 5/4/3 across the bottom */
+  #body { flex:1 1 auto; display:grid; grid-template-columns: 2fr 2fr 1.6fr; grid-template-rows: 1.25fr 1fr; min-height:0; }
+  #map { grid-column: 1 / 3; grid-row: 1; }
+
+  #right-col { grid-column: 3; grid-row: 1; display:flex; flex-direction:column; min-height:0; border-left:2px solid var(--border); }
+  #right-col .panel { flex:1 1 50%; min-height:0; }
+  #right-col .panel:first-child { border-bottom:2px solid var(--border); }
+
+  .bottom-panel { grid-row:2; min-height:0; border-top:2px solid var(--border); }
+  #panel-5 { grid-column:1; }
+  #panel-4 { grid-column:2; border-left:2px solid var(--border); }
+  #panel-3 { grid-column:3; border-left:2px solid var(--border); }
+
+  .panel { display:flex; flex-direction:column; background:var(--bg); overflow:hidden; }
+  .panel-header { flex:0 0 auto; padding:10px 14px; background:var(--panel); border-bottom:1px solid var(--border); }
+  .panel-header h2 { font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--text); margin:0 0 4px; font-weight:700; display:flex; align-items:center; }
+  .panel-header .hint { font-size:10.5px; color:var(--muted); line-height:1.4; margin:0; }
+  .panel-num { display:inline-block; width:16px; height:16px; background:var(--border); color:var(--text); text-align:center; line-height:16px; font-size:10px; margin-right:8px; font-family:var(--mono); flex:0 0 auto; }
+  .panel-body { flex:1 1 auto; overflow-y:auto; padding:10px 14px; }
+  .placeholder { font-size:11.5px; color:var(--muted); }
+
+  .rec { background:var(--panel2); border:1px solid var(--border); border-left:4px solid var(--muted); padding:8px 10px; margin-bottom:7px; font-size:11.5px; line-height:1.4; cursor:pointer; }
+  .rec:hover { background:#20242c; }
+  .rec.essential { border-left-color: var(--critical); }
+  .rec.general { border-left-color: var(--warning); }
+  .rec.highlighted { border-color: var(--accent); background:#182238; }
+  .rec .top-row { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
+  .rec .priority { color:var(--muted); font-size:10px; white-space:nowrap; font-family:var(--mono); }
+  .rec .priority b { color:var(--text); }
+
+  .badge { display:inline-block; padding:2px 6px; font-size:9.5px; margin-right:6px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; }
+  .badge.critical { background: var(--critical); color:#fff; }
+  .badge.warning { background: var(--warning); color:#141200; }
+  .badge.normal { background: var(--normal); color:#fff; }
+
+  .med-row { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--border); font-size:12px; cursor:pointer; }
+  .med-row:hover { color:#fff; }
+  .med-row.highlighted { background:#182238; }
+  .med-row .days { color: var(--muted); white-space:nowrap; padding-left:10px; font-family:var(--mono); }
+  .transfer { font-size:11px; font-family:var(--mono); background:#101c14; border:1px solid #234030; padding:6px 8px; margin:4px 0; }
+  .transfer.deficit { background:#1e1212; border-color:#4a2a2a; }
+  .transfer.highlighted { border-color: var(--accent); background:#16233a; }
+  .subhead { margin:10px 0 4px; font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; border-top:1px solid var(--border); padding-top:8px; }
+  #chart-wrap { background:#0e0f13; border:1px solid var(--border); padding:8px; }
+  #chart-caption { font-size:10.5px; color:var(--muted); margin-top:6px; line-height:1.4; }
+  ::-webkit-scrollbar { width:8px; } ::-webkit-scrollbar-thumb { background:var(--border); }
+
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.78); z-index:100000; align-items:center; justify-content:center; }
+  .modal-overlay.open { display:flex; }
+  .modal { width:560px; max-width:90vw; max-height:80vh; overflow-y:auto; background:var(--panel); border:2px solid var(--border); padding:22px 26px; }
+  .modal h2 { margin-top:0; font-size:15px; text-transform:uppercase; letter-spacing:.04em; border-bottom:1px solid var(--border); padding-bottom:10px; }
+  .modal h3 { font-size:12px; color:var(--text); margin:18px 0 6px; text-transform:uppercase; letter-spacing:.04em; }
+  .modal p, .modal li { font-size:13px; line-height:1.55; color:#cfd2d8; }
+  .modal ul { padding-left:18px; margin:6px 0; }
+  .modal .close-x { float:right; cursor:pointer; color:var(--muted); font-size:16px; line-height:1; }
+  .modal .close-x:hover { color:var(--text); }
+  .modal .step { margin-bottom:10px; }
+  .modal .swatch { display:inline-block; width:9px; height:9px; margin-right:6px; }
+
+  .leaflet-popup-content-wrapper { background: var(--panel); color: var(--text); border:1px solid var(--border); }
+  .leaflet-popup-tip { background: var(--panel); border:1px solid var(--border); }
+  .leaflet-popup-content { margin:10px 12px; }
+  .leaflet-popup-close-button { color: var(--muted) !important; }
+  .map-popup h4 { margin:0 0 6px; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; }
+  .map-popup .risk-tag { margin-bottom:6px; }
+  .map-popup .pmed { display:flex; justify-content:space-between; gap:10px; font-size:11px; padding:3px 0; border-bottom:1px solid var(--border); font-family:var(--mono); }
+  .map-popup .more-hint { font-size:10.5px; color:var(--muted); margin-top:8px; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div id="header">
+    <h1>ripple</h1>
+    <div class="header-legend">
+      <span><span class="dot" style="background:var(--critical)"></span>Critical &mdash; act now</span>
+      <span><span class="dot" style="background:var(--warning)"></span>Warning &mdash; watch closely</span>
+      <span><span class="dot" style="background:var(--normal)"></span>Normal &mdash; no concern</span>
+    </div>
+    <button class="hdr-btn" id="btn-help">How It Works</button>
+    <button class="hdr-btn" id="btn-guide">How To Read This</button>
+  </div>
+
+  <div id="selected-bar" class="empty">No facility selected &mdash; click a dot on the map, a card in panel 2, or an item in panel 1.</div>
+
+  <div id="body">
+    <div id="map"></div>
+
+    <div id="right-col">
+      <div class="panel" id="panel-1">
+        <div class="panel-header">
+          <h2><span class="panel-num">1</span>Needs Supplier Restock</h2>
+          <p class="hint">Facilities running low with no spare stock reachable anywhere in the network. Redistribution can't fix this &mdash; only a new supplier delivery can.</p>
+        </div>
+        <div class="panel-body" id="deficit-list"></div>
+      </div>
+      <div class="panel" id="panel-2">
+        <div class="panel-header">
+          <h2><span class="panel-num">2</span>Ranked Action List</h2>
+          <p class="hint">Every alert, sorted by priority (most urgent first). Click a card to select that facility.</p>
+        </div>
+        <div class="panel-body" id="rec-list"></div>
+      </div>
+    </div>
+
+    <div class="panel bottom-panel" id="panel-5">
+      <div class="panel-header">
+        <h2><span class="panel-num">5</span>Stock Trend</h2>
+        <p class="hint">Stock on hand vs. daily consumption for the selected facility + medicine.</p>
+      </div>
+      <div class="panel-body">
+        <div id="chart-wrap"><canvas id="trend-chart" height="140"></canvas></div>
+        <p id="chart-caption">Select a facility to begin.</p>
+      </div>
+    </div>
+
+    <div class="panel bottom-panel" id="panel-4">
+      <div class="panel-header">
+        <h2><span class="panel-num">4</span>Transfers In / Out</h2>
+        <p class="hint">Incoming and outgoing stock transfers for the selected facility.</p>
+      </div>
+      <div class="panel-body" id="transfer-list"><div class="placeholder">Select a facility to see its transfers.</div></div>
+    </div>
+
+    <div class="panel bottom-panel" id="panel-3">
+      <div class="panel-header">
+        <h2><span class="panel-num">3</span>Facility Medicines</h2>
+        <p class="hint">Every medicine at the selected facility, soonest-to-run-out first.</p>
+      </div>
+      <div class="panel-body" id="detail-medicines"><div class="placeholder">Select a facility to see its medicines.</div></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-help">
+  <div class="modal">
+    <span class="close-x" data-close="modal-help">&times;</span>
+    <h2>How this system works</h2>
+    <div class="step"><strong>1. Forecast.</strong> For every medicine at every facility, the system tracks recent consumption and projects forward to estimate <em>days of stock remaining</em> &mdash; always as a range, never a single number, because demand is noisy.</div>
+    <div class="step"><strong>2. Detect the real signal.</strong> One facility running low is usually just noise. The system only raises an alert when <em>several nearby facilities</em> are running low on the <em>same medicine</em> at the <em>same time</em> &mdash; that correlated pattern is what suggests a real regional shortage forming, not a fluke.</div>
+    <div class="step"><strong>3. Look for a fix nearby.</strong> When an alert fires, the system checks whether any facility within reach has spare stock of that medicine above its own safety buffer. If so, it proposes a specific transfer (from &rarr; to, how much, how far).</div>
+    <div class="step"><strong>4. Escalate when there's no fix.</strong> If nobody nearby has spare stock (or the distance is too far to move medicine in time), the system flags that medicine for <em>supplier escalation</em> instead of pretending redistribution can solve it.</div>
+    <div class="step"><strong>5. Rank everything.</strong> All alerts are combined into one prioritized list, scored by: how critical the medicine is (life-saving vs. general), how soon it runs out, how many people are served by the affected facilities, and whether a transfer is actually possible.</div>
+    <h3>About this demo</h3>
+    <p>The underlying data is a real supply-chain dataset reshaped into a network of facilities. One realistic regional shortage scenario was deliberately injected into two city clusters so the detection and redistribution logic have something concrete to catch &mdash; every number you see downstream of that (the forecast, the alert, the transfer, the ranking) is computed live by the system, not scripted.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-guide">
+  <div class="modal">
+    <span class="close-x" data-close="modal-guide">&times;</span>
+    <h2>How to read this dashboard</h2>
+    <h3>The map</h3>
+    <p>Each dot is one facility (hospital, PHC, or pharmacy). Color = risk level:</p>
+    <ul>
+      <li><span class="swatch" style="background:var(--critical)"></span><strong>Red / critical</strong> &mdash; this facility is part of an active regional alert, or has a medicine at 2 days of stock or less.</li>
+      <li><span class="swatch" style="background:var(--warning)"></span><strong>Yellow / warning</strong> &mdash; lowest medicine here has 7 days of stock or less.</li>
+      <li><span class="swatch" style="background:var(--normal)"></span><strong>Green / normal</strong> &mdash; nothing urgent right now.</li>
+    </ul>
+    <p>Click any dot to select that facility across every panel below, and to open a quick-summary popup on the map itself.</p>
+
+    <h3>Panel 1 &mdash; Needs Supplier Restock</h3>
+    <p>Medicines where the shortfall can't be solved by moving stock from elsewhere in the network &mdash; every nearby facility is also short, or too far away to reach in time. These need a fresh delivery from the supplier, not a transfer.</p>
+
+    <h3>Panel 2 &mdash; Ranked Action List</h3>
+    <p>Each card is one alert, ordered by <strong>priority score</strong> (top-right, 0&ndash;1, higher = more urgent). A card tells you: which medicine, which facilities are affected, how many days of stock are left (with a likely range in parentheses), and what to do: transfer stock from a named facility, escalate to the supplier, or both.</p>
+
+    <h3>Panel 3 &mdash; Facility Medicines</h3>
+    <p>Every medicine stocked at the selected facility, soonest-to-run-out first. Click a row to plot it in panel 5.</p>
+
+    <h3>Panel 4 &mdash; Transfers In / Out</h3>
+    <p>Any proposed transfers involving the selected facility: incoming (it receives surplus from elsewhere) or outgoing (it's the surplus source for another facility).</p>
+
+    <h3>Panel 5 &mdash; Stock Trend</h3>
+    <p>The solid line is stock on hand, the dashed line is daily consumption, for the facility + medicine currently selected. A steady decline with no recovery is what a forming shortage looks like.</p>
+
+    <h3>Selecting a facility</h3>
+    <p>Click a map dot, a card in panel 2, or a row in panel 3 &mdash; whichever you click, all five panels update and highlight matching entries (a blue outline marks anything related to the selected facility in panels 1 and 2).</p>
+  </div>
+</div>
+
+<script>
+const API = "";
+const riskColor = { critical: "#c0392b", warning: "#b8860b", normal: "#2e7d46" };
+let map = L.map('map').setView([21.5, 79.0], 5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors', maxZoom: 10
+}).addTo(map);
+
+let markers = {};
+let chart = null;
+let recommendationData = null;
+let selectedFacility = null;
+
+async function loadFacilities() {
+  const res = await fetch(`${API}/api/facilities`);
+  const facilities = await res.json();
+  facilities.forEach(f => {
+    const icon = L.divIcon({
+      className: '',
+      html: `<div style="width:14px;height:14px;background:${riskColor[f.risk_level]};border:2px solid #0a0b0e;"></div>`,
+      iconSize: [14, 14], iconAnchor: [7, 7],
+    });
+    const marker = L.marker([f.latitude, f.longitude], { icon }).addTo(map);
+    marker.bindTooltip(`<strong>${f.name}</strong> (${f.type})<br/>Risk: ${f.risk_level} &middot; lowest stock: ${f.min_days_of_stock}d`);
+    marker.on('click', () => onFacilityClick(f.facility_id));
+    markers[f.facility_id] = marker;
+  });
+}
+
+async function loadRecommendations() {
+  const res = await fetch(`${API}/api/recommendations`);
+  recommendationData = await res.json();
+  renderDeficitList();
+  renderRecList();
+}
+
+function renderDeficitList() {
+  const deficitList = document.getElementById('deficit-list');
+  deficitList.innerHTML = recommendationData.regional_net_deficits.length
+    ? recommendationData.regional_net_deficits.map(d =>
+        `<div class="transfer deficit" data-facilities="${(d.facility_ids || []).join(',')}"><strong>${d.medicine_name}</strong> (${d.criticality_tier}) &mdash; ${d.total_unmet_deficit.toFixed(0)} units short across ${d.n_facilities_affected} facilit${d.n_facilities_affected===1?'y':'ies'}. No feasible route; escalate to supplier.</div>`
+      ).join('')
+    : '<div class="placeholder">None right now.</div>';
+}
+
+function renderRecList() {
+  const recList = document.getElementById('rec-list');
+  recList.innerHTML = recommendationData.recommendations.map(r => `
+    <div class="rec ${r.criticality_tier}" data-facility="${r.facilities_affected[0]}" data-facilities="${r.facilities_affected.join(',')}">
+      <div class="top-row">
+        <div><span class="badge ${r.criticality_tier === 'essential' ? 'critical' : 'warning'}">${r.criticality_tier}</span><strong>${r.medicine_name}</strong></div>
+        <span class="priority">priority <b>${r.priority_score}</b></span>
+      </div>
+      <div style="color:var(--muted);font-size:10.5px;margin-bottom:4px;">Region: ${r.cluster_id.replace('cluster_','cluster ')} &middot; ${r.facilities_affected.length} facilit${r.facilities_affected.length===1?'y':'ies'} affected</div>
+      <div>${r.narrative}</div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.rec').forEach(el => {
+    el.addEventListener('click', () => onFacilityClick(el.dataset.facility));
+  });
+}
+
+function highlightRelated(facilityId) {
+  document.querySelectorAll('#rec-list .rec').forEach(el => {
+    const ids = (el.dataset.facilities || '').split(',');
+    el.classList.toggle('highlighted', ids.includes(facilityId));
+  });
+  document.querySelectorAll('#deficit-list .transfer').forEach(el => {
+    const ids = (el.dataset.facilities || '').split(',');
+    el.classList.toggle('highlighted', ids.includes(facilityId));
+  });
+}
+
+async function fetchFacilityDetail(facilityId) {
+  const res = await fetch(`${API}/api/facility/${facilityId}`);
+  return res.ok ? res.json() : null;
+}
+
+function renderMedicines(facilityId, data) {
+  const medDiv = document.getElementById('detail-medicines');
+  medDiv.innerHTML = data.medicines.map(m => `
+    <div class="med-row" data-sku="${m.sku}" data-facility="${facilityId}">
+      <span>${m.medicine_name} <span style="color:#6b7280;">(${m.criticality_tier})</span></span>
+      <span class="days">${m.days_of_stock_estimate}d left (${m.ci_low}-${m.ci_high} range)</span>
+    </div>
+  `).join('') || '<div class="placeholder">No medicines tracked here.</div>';
+
+  medDiv.querySelectorAll('.med-row').forEach((el, i) => {
+    el.addEventListener('click', () => {
+      medDiv.querySelectorAll('.med-row').forEach(r => r.classList.remove('highlighted'));
+      el.classList.add('highlighted');
+      loadTrend(el.dataset.facility, el.dataset.sku);
+    });
+    if (i === 0) el.classList.add('highlighted');
+  });
+
+  if (data.medicines.length) loadTrend(facilityId, data.medicines[0].sku);
+}
+
+function renderTransfers(data) {
+  const div = document.getElementById('transfer-list');
+  const incoming = data.incoming_transfers.length
+    ? '<div class="subhead">Incoming</div>' + data.incoming_transfers.map(t =>
+        `<div class="transfer">${t.from_facility} &rarr; here: ${t.quantity} units of ${t.sku} (${t.distance_km}km away)</div>`).join('')
+    : '';
+  const outgoing = data.outgoing_transfers.length
+    ? '<div class="subhead">Outgoing</div>' + data.outgoing_transfers.map(t =>
+        `<div class="transfer">here &rarr; ${t.to_facility}: ${t.quantity} units of ${t.sku} (${t.distance_km}km away)</div>`).join('')
+    : '';
+  div.innerHTML = incoming + outgoing || '<div class="placeholder">No transfers involve this facility.</div>';
+}
+
+function renderPopup(facilityId, data) {
+  const marker = markers[facilityId];
+  if (!marker) return;
+  const badgeClass = data.risk_level === 'critical' ? 'critical' : data.risk_level === 'warning' ? 'warning' : 'normal';
+  const topMeds = data.medicines.slice(0, 5).map(m =>
+    `<div class="pmed"><span>${m.medicine_name}</span><span>${m.days_of_stock_estimate}d</span></div>`
+  ).join('');
+  const html = `
+    <div class="map-popup">
+      <span class="badge risk-tag ${badgeClass}">${data.risk_level}</span>
+      <h4>${data.name}</h4>
+      ${topMeds || '<div class="pmed">No medicines tracked here</div>'}
+      <div class="more-hint">See panels 1-5 for full detail.</div>
+    </div>`;
+  marker.bindPopup(html, { maxWidth: 260 }).openPopup();
+}
+
+async function onFacilityClick(facilityId) {
+  const data = await fetchFacilityDetail(facilityId);
+  if (!data) return;
+  selectedFacility = facilityId;
+
+  const bar = document.getElementById('selected-bar');
+  bar.classList.remove('empty');
+  bar.innerHTML = `Selected: <b>${data.name}</b> (${facilityId}) &mdash; risk: <b>${data.risk_level}</b>`;
+
+  renderMedicines(facilityId, data);
+  renderTransfers(data);
+  renderPopup(facilityId, data);
+  highlightRelated(facilityId);
+
+  const m = markers[facilityId];
+  if (m) map.setView(m.getLatLng(), 7);
+}
+
+async function loadTrend(facilityId, sku) {
+  const res = await fetch(`${API}/api/trend/${facilityId}/${sku}`);
+  const data = await res.json();
+  const ctx = document.getElementById('trend-chart');
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: data.dates,
+      datasets: [
+        { label: 'stock on hand', data: data.stock_level, borderColor: '#7ab8ff', tension: 0.2, pointRadius: 0 },
+        { label: 'daily consumption', data: data.consumption, borderColor: '#e0a020', tension: 0.2, pointRadius: 0, borderDash: [4,3] },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#e8e8ec', font: { size: 10 } } }, title: {
+        display: true, text: `${sku}: forecast ${data.forecast.days_of_stock_estimate} days of stock left (likely range ${data.forecast.ci_low}-${data.forecast.ci_high} days)`,
+        color: '#e8e8ec', font: { size: 11 },
+      }},
+      scales: { x: { ticks: { color: '#8a8f9c', maxTicksLimit: 6 } }, y: { ticks: { color: '#8a8f9c' } } },
+    },
+  });
+  document.getElementById('chart-caption').textContent =
+    'Solid = stock on hand, dashed = daily consumption. A steadily falling solid line that isn\'t recovering is what a forming shortage looks like.';
+}
+
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.getElementById('btn-help').addEventListener('click', () => openModal('modal-help'));
+document.getElementById('btn-guide').addEventListener('click', () => openModal('modal-guide'));
+document.querySelectorAll('.close-x').forEach(el => el.addEventListener('click', () => closeModal(el.dataset.close)));
+document.querySelectorAll('.modal-overlay').forEach(el => {
+  el.addEventListener('click', (e) => { if (e.target === el) closeModal(el.id); });
+});
+
+loadFacilities();
+loadRecommendations();
+</script>
+</body>
+</html>

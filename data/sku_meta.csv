@@ -1,0 +1,101 @@
+sku,medicine_name,criticality_tier,substitutability_group,is_national,origin_city,seed_stock_level,seed_daily_sold,seed_lead_time_days,seed_order_qty,seed_defect_rate_pct
+SKU0,Amoxicillin,essential,Amoxicillin,True,Mumbai,58,802,7,96,0.2264103608499251
+SKU1,Paracetamol,essential,Paracetamol,True,Mumbai,53,736,30,37,4.854068026388706
+SKU2,Ciprofloxacin,essential,Ciprofloxacin,True,Mumbai,1,8,10,88,4.580592619199229
+SKU3,Ibuprofen,essential,Ibuprofen,True,Kolkata,23,83,13,59,4.74664862064775
+SKU4,Artemether-Lumefantrine,essential,Artemether-Lumefantrine,True,Delhi,5,871,3,56,3.145579522833002
+SKU5,Azithromycin,essential,Azithromycin,True,Bangalore,90,147,27,66,2.7791935115711617
+SKU6,Diclofenac,essential,Diclofenac,True,Kolkata,11,65,15,58,1.0009106193041355
+SKU7,Vitamin C,general,Vitamin C,False,Bangalore,93,426,17,11,0.3981771868506506
+SKU8,Multivitamin,general,Multivitamin,False,Mumbai,5,150,10,15,2.7098626911099615
+SKU9,Aspirin,essential,Aspirin,True,Chennai,14,980,27,83,3.844614478767585
+SKU10,Artesunate,essential,Artesunate,True,Kolkata,51,996,13,80,1.7273139283559424
+SKU11,Chloroquine,essential,Chloroquine,True,Kolkata,46,960,23,60,0.0211698213729943
+SKU12,Metronidazole,essential,Metronidazole,True,Kolkata,100,336,30,85,2.1612537475559117
+SKU13,Tramadol,essential,Tramadol,True,Bangalore,80,249,8,48,1.6310742300715386
+SKU14,Paracetamol,essential,Paracetamol,True,Kolkata,54,562,29,78,0.1006828515650937
+SKU15,Ibuprofen,essential,Ibuprofen,True,Bangalore,9,469,8,69,2.264405761198549
+SKU16,Artemether-Lumefantrine,essential,Artemether-Lumefantrine,True,Bangalore,2,280,5,78,1.012563089258049
+SKU17,Zinc Supplement,general,Zinc Supplement,False,Chennai,45,126,17,85,0.1020207549181761
+SKU18,Doxycycline,essential,Doxycycline,True,Kolkata,10,620,10,46,2.2319391107292637
+SKU19,Diclofenac,essential,Diclofenac,True,Chennai,48,187,11,94,3.64645086541703
+SKU20,Aspirin,essential,Aspirin,True,Chennai,27,320,12,68,4.231416573534539
+SKU21,Vitamin D3,general,Vitamin D3,False,Chennai,69,601,25,7,0.0186075676310149
+SKU22,Ceftriaxone,essential,Ceftriaxone,True,Kolkata,71,884,1,63,2.591275473211116
+SKU23,Folic Acid,general,Folic Acid,False,Kolkata,84,391,5,29,1.342291562722734
+SKU24,Cefixime,essential,Cefixime,True,Bangalore,4,209,26,2,3.691310292628728
+SKU25,Ampicillin,essential,Ampicillin,True,Kolkata,82,142,11,52,3.797231217114183
+SKU26,Amoxicillin,essential,Amoxicillin,True,Bangalore,59,353,16,48,2.119319736724923
+SKU27,Iron Supplement,general,Iron Supplement,False,Mumbai,47,352,9,62,2.864667837883373
+SKU28,Calcium Supplement,general,Calcium Supplement,False,Mumbai,48,394,15,24,0.815757079295672
+SKU29,B-Complex,general,B-Complex,False,Kolkata,45,253,5,67,3.878098936588488
+SKU30,Ciprofloxacin,essential,Ciprofloxacin,True,Kolkata,60,327,26,35,0.9653947053523932
+SKU31,Artesunate,essential,Artesunate,True,Chennai,6,168,17,44,2.9890000066550746
+SKU32,Chloroquine,essential,Chloroquine,True,Kolkata,89,781,13,64,1.946036119386113
+SKU33,Vitamin C,general,Vitamin C,False,Chennai,4,616,17,95,3.541046012250923
+SKU34,Tramadol,essential,Tramadol,True,Chennai,1,602,26,21,0.6466045593720549
+SKU35,Multivitamin,general,Multivitamin,False,Delhi,42,449,27,85,0.5411540980605811
+SKU36,Paracetamol,essential,Paracetamol,True,Delhi,18,963,23,28,3.8055333792433537
+SKU37,Ibuprofen,essential,Ibuprofen,True,Kolkata,25,963,8,21,2.610288084848113
+SKU38,Zinc Supplement,general,Zinc Supplement,False,Mumbai,69,705,1,88,0.6133268991645074
+SKU39,Artemether-Lumefantrine,essential,Artemether-Lumefantrine,True,Kolkata,78,176,29,34,1.451972203996816
+SKU40,Diclofenac,essential,Diclofenac,True,Kolkata,90,933,20,39,4.213269430586566
+SKU41,Aspirin,essential,Aspirin,True,Chennai,64,556,19,38,0.0453022623982596
+SKU42,Artesunate,essential,Artesunate,True,Bangalore,22,155,27,57,4.939255288620948
+SKU43,Azithromycin,essential,Azithromycin,True,Mumbai,36,598,29,85,0.3723047679850977
+SKU44,Vitamin D3,general,Vitamin D3,False,Delhi,13,919,19,72,2.962626320454882
+SKU45,Metronidazole,essential,Metronidazole,True,Chennai,93,24,7,52,3.219604612084106
+SKU46,Doxycycline,essential,Doxycycline,True,Chennai,92,859,29,6,3.6486105925362033
+SKU47,Chloroquine,essential,Chloroquine,True,Kolkata,4,910,15,51,0.3805735867132137
+SKU48,Ceftriaxone,essential,Ceftriaxone,True,Mumbai,30,29,16,9,1.6981125407144038
+SKU49,Folic Acid,general,Folic Acid,False,Delhi,97,99,24,9,2.825813985400132
+SKU50,Iron Supplement,general,Iron Supplement,False,Delhi,31,633,23,82,4.754800804671185
+SKU51,Cefixime,essential,Cefixime,True,Bangalore,100,154,4,52,1.7729511720835571
+SKU52,Tramadol,essential,Tramadol,True,Mumbai,64,820,11,11,2.1224716191438247
+SKU53,Paracetamol,essential,Paracetamol,True,Delhi,96,242,25,54,1.4103475760760271
+SKU54,Ampicillin,essential,Ampicillin,True,Kolkata,33,622,22,61,2.4787719755397477
+SKU55,Amoxicillin,essential,Amoxicillin,True,Delhi,97,701,11,11,4.548919659396385
+SKU56,Ibuprofen,essential,Ibuprofen,True,Mumbai,25,93,23,83,1.173755495387454
+SKU57,Ciprofloxacin,essential,Ciprofloxacin,True,Delhi,5,227,18,51,2.511174830212707
+SKU58,Artemether-Lumefantrine,essential,Artemether-Lumefantrine,True,Delhi,10,896,5,44,1.7303747198591968
+SKU59,Calcium Supplement,general,Calcium Supplement,False,Kolkata,100,484,16,26,0.4471940154638232
+SKU60,Diclofenac,essential,Diclofenac,True,Mumbai,41,380,27,72,2.853090616649054
+SKU61,Azithromycin,essential,Azithromycin,True,Kolkata,32,117,23,36,4.367470538205053
+SKU62,B-Complex,general,B-Complex,False,Mumbai,86,270,2,40,1.8740014040443749
+SKU63,Aspirin,essential,Aspirin,True,Bangalore,54,246,19,10,3.6328432903821337
+SKU64,Artesunate,essential,Artesunate,True,Delhi,73,134,27,75,0.1594863147175146
+SKU65,Chloroquine,essential,Chloroquine,True,Kolkata,57,457,24,54,4.911095954842331
+SKU66,Tramadol,essential,Tramadol,True,Kolkata,13,704,17,19,3.4480632883402618
+SKU67,Paracetamol,essential,Paracetamol,True,Mumbai,12,513,9,71,0.1319554443118148
+SKU68,Metronidazole,essential,Metronidazole,True,Bangalore,0,163,8,58,1.98346787217418
+SKU69,Ibuprofen,essential,Ibuprofen,True,Kolkata,95,511,1,27,1.3623879886491086
+SKU70,Doxycycline,essential,Doxycycline,True,Bangalore,10,32,12,22,1.8305755986122312
+SKU71,Vitamin C,general,Vitamin C,False,Bangalore,76,637,2,26,2.078750607874969
+SKU72,Multivitamin,general,Multivitamin,False,Bangalore,57,478,29,77,3.213329607438309
+SKU73,Zinc Supplement,general,Zinc Supplement,False,Chennai,17,375,25,66,4.620546064513706
+SKU74,Ceftriaxone,essential,Ceftriaxone,True,Delhi,41,904,6,1,0.3966127241099354
+SKU75,Artemether-Lumefantrine,essential,Artemether-Lumefantrine,True,Chennai,16,106,20,56,2.0300690886687516
+SKU76,Cefixime,essential,Cefixime,True,Bangalore,38,241,1,22,2.1800374515822165
+SKU77,Ampicillin,essential,Ampicillin,True,Kolkata,96,359,28,57,3.055141818307548
+SKU78,Amoxicillin,essential,Amoxicillin,True,Mumbai,5,946,4,51,4.096881332470452
+SKU79,Ciprofloxacin,essential,Ciprofloxacin,True,Bangalore,31,198,25,20,0.1658716274806082
+SKU80,Diclofenac,essential,Diclofenac,True,Chennai,39,872,14,41,2.8496621985053308
+SKU81,Azithromycin,essential,Azithromycin,True,Delhi,48,774,6,8,2.547547121548712
+SKU82,Aspirin,essential,Aspirin,True,Mumbai,42,336,19,72,4.137877048622357
+SKU83,Metronidazole,essential,Metronidazole,True,Bangalore,65,663,24,7,0.7730061340672478
+SKU84,Doxycycline,essential,Doxycycline,True,Chennai,73,618,26,80,4.843456577118041
+SKU85,Vitamin D3,general,Vitamin D3,False,Chennai,15,25,18,66,1.3744289997457582
+SKU86,Artesunate,essential,Artesunate,True,Mumbai,32,223,14,22,2.0515129307662465
+SKU87,Ceftriaxone,essential,Ceftriaxone,True,Chennai,5,79,7,55,3.693737787839275
+SKU88,Folic Acid,general,Folic Acid,False,Mumbai,60,737,18,85,0.722204401882931
+SKU89,Iron Supplement,general,Iron Supplement,False,Kolkata,90,134,1,27,1.9076657339590744
+SKU90,Chloroquine,essential,Chloroquine,True,Bangalore,66,320,18,96,1.2193822244013883
+SKU91,Calcium Supplement,general,Calcium Supplement,False,Delhi,98,916,22,85,0.6260018582093946
+SKU92,B-Complex,general,B-Complex,False,Mumbai,90,276,25,10,0.3334318252247392
+SKU93,Cefixime,essential,Cefixime,True,Chennai,63,114,17,66,4.165781795424145
+SKU94,Vitamin C,general,Vitamin C,False,Delhi,77,987,26,72,1.4636074984727798
+SKU95,Ampicillin,essential,Ampicillin,True,Mumbai,15,672,14,26,1.2108821295850665
+SKU96,Multivitamin,general,Multivitamin,False,Mumbai,67,324,2,32,3.872047681482133
+SKU97,Amoxicillin,essential,Amoxicillin,True,Mumbai,46,62,19,4,3.376237834717981
+SKU98,Tramadol,essential,Tramadol,True,Chennai,53,913,1,27,2.908122169351261
+SKU99,Ciprofloxacin,essential,Ciprofloxacin,True,Chennai,55,627,8,59,0.3460272907055034
