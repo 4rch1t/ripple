@@ -73,8 +73,9 @@ cd src && uvicorn api:app --host 0.0.0.0 --port $PORT
 
 1. **Archit**: [@4rch1t](https://github.com/4rch1t) <p>
 2. **Aarav Goel**: [@coderaarav12](https://github.com/coderaarav12) <p>
-
-
+3. **Anand**: [@cyberrrbreach](https://github.com/cyberrrbreach) <p>
+4. **Neeti**: [@neetii-git](https://github.com/neetii-git) <p>
+5.  **Krishav Dutta**: [@]() <p>
 
 
 
