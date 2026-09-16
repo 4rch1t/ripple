@@ -69,7 +69,7 @@ See Dockerfile and Procfile in the repo root. Start command on any platform is
 
 cd src && uvicorn api:app --host 0.0.0.0 --port $PORT
 
-## Contributons
+## Contributions:
 
 1. **Archit**: [@4rch1t](https://github.com/4rch1t) <p>
 2. **Aarav Goel**: [@coderaarav12](https://github.com/coderaarav12) <p>
