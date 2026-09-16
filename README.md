@@ -396,11 +396,11 @@ This project was engineered for the hackathon by:
 * **Aarav Goel** — [@coderaarav12](https://github.com/coderaarav12)
 * **Anand** — [@cyberrrbreach](https://github.com/cyberrrbreach)
 * **Neeti** — [@neetii-git](https://github.com/neetii-git)
-* **Krishav Dutta**
+* **Krishav Dutta** - 
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ for resilient public health systems and UN Sustainable Development Goal 3.</sub>
+  <sub>Built for resilient public health systems and UN Sustainable Development Goal 3.</sub>
 </div>
 
