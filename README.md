@@ -71,8 +71,8 @@ cd src && uvicorn api:app --host 0.0.0.0 --port $PORT
 
 ## Contributons
 
-**Archit** [@4rch1t](https://github.com/4rch1t) <p>
-**Aarav Goel** [@coderaarav12](https://github.com/coderaarav12) <p>
+1. **Archit**: [@4rch1t](https://github.com/4rch1t) <p>
+2. **Aarav Goel**: [@coderaarav12](https://github.com/coderaarav12) <p>
 
 
 
