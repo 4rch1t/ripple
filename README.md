@@ -396,7 +396,7 @@ This project was engineered for the hackathon by:
 * **Aarav Goel** — [@coderaarav12](https://github.com/coderaarav12)
 * **Anand** — [@cyberrrbreach](https://github.com/cyberrrbreach)
 * **Neeti** — [@neetii-git](https://github.com/neetii-git)
-* **Krishav Dutta** - 
+* **Krishav Dutta** — [@KillerkingKD2112](https://github.com/KillerkingKD2112)
 
 ---
 
