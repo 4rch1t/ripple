@@ -16,7 +16,14 @@ MAA-PHC,Chennai Phc,13.06197,80.26583,PHC,56291,Chennai
 MAA-PHARM,Chennai Pharmacy,13.03302,80.21149,pharmacy,23102,Chennai
 HYD-HOSP,Gandhi Hospital Hyderabad,17.4243,78.5034,hospital,235000,Hyderabad
 HYD-PHC,Secunderabad Urban Primary Health Centre,17.4399,78.4983,PHC,72000,Hyderabad
-HYD-PHARM,Apollo Pharmacy Hyderabad,17.4325,78.4071,pharmacy,24000,Hyderabad
+WGL-HOSP,MGM Hospital Warangal,17.9784,79.5941,hospital,190000,Warangal
 PNQ-HOSP,Sassoon General Hospital Pune,18.5262,73.8744,hospital,215000,Pune
-PNQ-PHC,Aundh Primary Health Centre Pune,18.5582,73.8078,PHC,68000,Pune
-PNQ-PHARM,Wellness Forever Pharmacy Pune,18.5196,73.8553,pharmacy,21000,Pune
+NSK-HOSP,Nashik District Civil Hospital,19.9975,73.7898,hospital,175000,Nashik
+MYS-HOSP,K.R. Hospital Mysuru,12.3168,76.6496,hospital,185000,Mysuru
+HBX-PHC,KIMS Hospital Hubballi,15.3647,75.124,PHC,80000,Hubballi
+CJB-HOSP,Coimbatore Medical College Hospital,11.0045,76.9616,hospital,210000,Coimbatore
+IXM-PHC,Government Rajaji Hospital Madurai,9.9252,78.1198,hospital,165000,Madurai
+JAI-HOSP,SMS Hospital Jaipur,26.8927,75.8155,hospital,240000,Jaipur
+LKO-HOSP,KGMU Hospital Lucknow,26.8689,80.9128,hospital,250000,Lucknow
+IXB-HOSP,North Bengal Medical College Siliguri,26.7271,88.3953,hospital,170000,Siliguri
+RDP-PHC,Durgapur Sub-Divisional Hospital,23.5204,87.3119,PHC,75000,Durgapur
