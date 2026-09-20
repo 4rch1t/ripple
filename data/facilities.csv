@@ -14,10 +14,27 @@ BLR-PHARM,Bangalore Pharmacy,12.91629,77.62389,pharmacy,8963
 MAA-HOSP,Chennai Hospital,13.12186,80.3455,hospital,195193
 MAA-PHC,Chennai Phc,13.06197,80.26583,PHC,56291
 MAA-PHARM,Chennai Pharmacy,13.03302,80.21149,pharmacy,23102
+VTZ-HOSP,King George Hospital Visakhapatnam,17.7088,83.3039,hospital,260000
+BZA-HOSP,Government General Hospital Vijayawada,16.5062,80.648,hospital,220000
+TIR-HOSP,SVIMS Hospital Tirupati,13.6288,79.4192,hospital,210000
+KRN-PHC,Kurnool General Hospital PHC,15.8281,78.0373,PHC,95000
 HYD-HOSP,Gandhi Hospital Hyderabad,17.4243,78.5034,hospital,235000
+HYD-PHARM,Apollo Pharmacy Hyderabad,17.4325,78.4071,pharmacy,24000
 WGL-HOSP,MGM Hospital Warangal,17.9784,79.5941,hospital,190000
+NZB-PHC,Government Hospital Nizamabad,18.6725,78.0941,PHC,85000
+TRV-HOSP,Government Medical College Trivandrum,8.5241,76.9366,hospital,230000
+COK-HOSP,Ernakulam General Hospital,9.9816,76.2799,hospital,215000
+CCJ-PHC,Kozhikode Medical College PHC,11.2588,75.7804,PHC,90000
+BBI-HOSP,AIIMS Bhubaneswar,20.2961,85.8245,hospital,240000
+CTC-HOSP,SCB Medical College Cuttack,20.4625,85.8828,hospital,220000
+PAT-HOSP,Patna Medical College Hospital,25.5941,85.1376,hospital,270000
+GAY-PHC,Anugrah Narayan Hospital Gaya,24.7914,85.0002,PHC,85000
+IXC-HOSP,PGIMER Chandigarh,30.7333,76.7794,hospital,250000
+ATQ-HOSP,Guru Nanak Dev Hospital Amritsar,31.634,74.8723,hospital,210000
+RPR-HOSP,AIIMS Raipur,21.2514,81.6296,hospital,225000
 PNQ-HOSP,Sassoon General Hospital Pune,18.5262,73.8744,hospital,215000
 NSK-HOSP,Nashik District Civil Hospital,19.9975,73.7898,hospital,175000
+NAG-HOSP,Government Medical College Nagpur,21.1458,79.0882,hospital,230000
 MYS-HOSP,K.R. Hospital Mysuru,12.3168,76.6496,hospital,185000
 HBX-PHC,KIMS Hospital Hubballi,15.3647,75.124,PHC,80000
 CJB-HOSP,Coimbatore Medical College Hospital,11.0045,76.9616,hospital,210000
