@@ -150,13 +150,6 @@
           "sku": "SKU54",
           "quantity": 15.0,
           "distance_km": 224.0
-        },
-        {
-          "from_facility": "IXM-PHC",
-          "to_facility": "BLR-PHC",
-          "sku": "SKU54",
-          "quantity": 10.0,
-          "distance_km": 338.3
         }
       ],
       "unmet_needs": [
@@ -168,7 +161,7 @@
         {
           "sku": "SKU54",
           "facility_id": "BLR-PHC",
-          "unmet_deficit": 11.3
+          "unmet_deficit": 21.3
         }
       ],
       "priority_score": 0.86,
@@ -714,7 +707,7 @@
     {
       "sku": "SKU54",
       "n_facilities_affected": 4,
-      "total_unmet_deficit": 67.3,
+      "total_unmet_deficit": 77.3,
       "facility_ids": [
         "BLR-PHARM",
         "BLR-PHC",
@@ -726,16 +719,35 @@
     },
     {
       "sku": "SKU1",
-      "n_facilities_affected": 5,
-      "total_unmet_deficit": 28.8,
+      "n_facilities_affected": 11,
+      "total_unmet_deficit": 60.9,
       "facility_ids": [
+        "AMD-HOSP",
+        "BOM-PHC",
         "DEL-HOSP",
         "DEL-PHARM",
         "DEL-PHC",
+        "HBX-PHC",
         "JAI-HOSP",
-        "RDP-PHC"
+        "LKO-HOSP",
+        "NSK-HOSP",
+        "RDP-PHC",
+        "ST-PHC"
       ],
       "medicine_name": "Paracetamol",
+      "criticality_tier": "essential"
+    },
+    {
+      "sku": "SKU0",
+      "n_facilities_affected": 4,
+      "total_unmet_deficit": 43.4,
+      "facility_ids": [
+        "AMD-HOSP",
+        "HBX-PHC",
+        "IXM-PHC",
+        "LKO-HOSP"
+      ],
+      "medicine_name": "Amoxicillin",
       "criticality_tier": "essential"
     },
     {
