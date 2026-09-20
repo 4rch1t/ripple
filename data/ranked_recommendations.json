@@ -21,14 +21,14 @@
           "from_facility": "MYS-HOSP",
           "to_facility": "BLR-HOSP",
           "sku": "SKU0",
-          "quantity": 8.0,
+          "quantity": 9.0,
           "distance_km": 133.8
         },
         {
           "from_facility": "CJB-HOSP",
           "to_facility": "BLR-HOSP",
           "sku": "SKU0",
-          "quantity": 13.0,
+          "quantity": 15.0,
           "distance_km": 237.4
         },
         {
@@ -49,7 +49,7 @@
           "from_facility": "MAA-HOSP",
           "to_facility": "BLR-HOSP",
           "sku": "SKU0",
-          "quantity": 22.2,
+          "quantity": 19.2,
           "distance_km": 293.3
         },
         {
@@ -69,7 +69,7 @@
       ],
       "unmet_needs": [],
       "priority_score": 0.967,
-      "narrative": "Bangalore Hospital (and 2 nearby facilities) will stock out of Amoxicillin in ~3 days (2-14 day range). MYS-HOSP has surplus 134km away; recommend transferring 8 units."
+      "narrative": "Bangalore Hospital (and 2 nearby facilities) will stock out of Amoxicillin in ~3 days (2-14 day range). MYS-HOSP has surplus 134km away; recommend transferring 9 units."
     },
     {
       "alert_id": "alert_7",
@@ -141,15 +141,22 @@
           "from_facility": "MYS-HOSP",
           "to_facility": "BLR-PHC",
           "sku": "SKU54",
-          "quantity": 8.0,
+          "quantity": 9.0,
           "distance_km": 122.2
         },
         {
           "from_facility": "CJB-HOSP",
           "to_facility": "BLR-PHC",
           "sku": "SKU54",
-          "quantity": 13.0,
+          "quantity": 15.0,
           "distance_km": 224.0
+        },
+        {
+          "from_facility": "IXM-PHC",
+          "to_facility": "BLR-PHC",
+          "sku": "SKU54",
+          "quantity": 10.0,
+          "distance_km": 338.3
         }
       ],
       "unmet_needs": [
@@ -161,18 +168,18 @@
         {
           "sku": "SKU54",
           "facility_id": "BLR-PHC",
-          "unmet_deficit": 24.3
+          "unmet_deficit": 11.3
         }
       ],
       "priority_score": 0.86,
       "narrative": "Bangalore Phc (and 2 nearby facilities) will stock out of Ampicillin in ~5 days (4-8 day range). BLR-HOSP has surplus 293km away; recommend transferring 96 units. 2 facilities have no feasible transfer -- escalate to supplier."
     },
     {
-      "alert_id": "alert_14",
+      "alert_id": "alert_16",
       "sku": "SKU1",
       "medicine_name": "Paracetamol",
       "criticality_tier": "essential",
-      "cluster_id": "cluster_1",
+      "cluster_id": "cluster_2",
       "facilities_affected": [
         "DEL-HOSP",
         "DEL-PHC"
@@ -180,7 +187,7 @@
       "days_of_stock_estimate": 0.0,
       "ci_low": 0.0,
       "ci_high": 0.0,
-      "trend_description": "consumption up 33% vs own baseline across 2 facilities in cluster_1; median days-of-stock 0.0 (0.0-0.0)",
+      "trend_description": "consumption up 33% vs own baseline across 2 facilities in cluster_2; median days-of-stock 0.0 (0.0-0.0)",
       "population_served_total": 290857,
       "recommended_transfers": [],
       "unmet_needs": [
@@ -233,11 +240,11 @@
       "narrative": "Bangalore Phc (and 1 nearby facility) will stock out of Amoxicillin in ~1 days (0-8 day range). MYS-HOSP has surplus 122km away; recommend transferring 1 units. 1 facility have no feasible transfer -- escalate to supplier."
     },
     {
-      "alert_id": "alert_19",
+      "alert_id": "alert_15",
       "sku": "SKU79",
       "medicine_name": "Ciprofloxacin",
       "criticality_tier": "essential",
-      "cluster_id": "cluster_3",
+      "cluster_id": "cluster_1",
       "facilities_affected": [
         "BOM-PHARM",
         "BOM-PHC"
@@ -245,7 +252,7 @@
       "days_of_stock_estimate": 7.8,
       "ci_low": 4.9,
       "ci_high": 18.6,
-      "trend_description": "consumption up 95% vs own baseline across 2 facilities in cluster_3; median days-of-stock 7.8 (4.9-18.6)",
+      "trend_description": "consumption up 95% vs own baseline across 2 facilities in cluster_1; median days-of-stock 7.8 (4.9-18.6)",
       "population_served_total": 106713,
       "recommended_transfers": [
         {
@@ -268,11 +275,11 @@
       "narrative": "Mumbai Pharmacy (and 1 nearby facility) will stock out of Ciprofloxacin in ~8 days (5-19 day range). BOM-HOSP has surplus 6km away; recommend transferring 10 units."
     },
     {
-      "alert_id": "alert_15",
+      "alert_id": "alert_17",
       "sku": "SKU82",
       "medicine_name": "Aspirin",
       "criticality_tier": "essential",
-      "cluster_id": "cluster_1",
+      "cluster_id": "cluster_2",
       "facilities_affected": [
         "DEL-HOSP",
         "DEL-PHARM"
@@ -280,7 +287,7 @@
       "days_of_stock_estimate": 14.7,
       "ci_low": 8.8,
       "ci_high": 45.0,
-      "trend_description": "consumption up 73% vs own baseline across 2 facilities in cluster_1; median days-of-stock 14.7 (8.8-45.0)",
+      "trend_description": "consumption up 73% vs own baseline across 2 facilities in cluster_2; median days-of-stock 14.7 (8.8-45.0)",
       "population_served_total": 257161,
       "recommended_transfers": [
         {
@@ -359,11 +366,11 @@
       "narrative": "Bangalore Pharmacy (and 1 nearby facility) will stock out of Ciprofloxacin in ~19 days (8-187 day range). BLR-PHC has surplus 4km away; recommend transferring 3 units."
     },
     {
-      "alert_id": "alert_16",
+      "alert_id": "alert_18",
       "sku": "SKU99",
       "medicine_name": "Ciprofloxacin",
       "criticality_tier": "essential",
-      "cluster_id": "cluster_1",
+      "cluster_id": "cluster_2",
       "facilities_affected": [
         "DEL-HOSP",
         "DEL-PHARM"
@@ -371,7 +378,7 @@
       "days_of_stock_estimate": 12.1,
       "ci_low": 6.0,
       "ci_high": 57.2,
-      "trend_description": "consumption up 72% vs own baseline across 2 facilities in cluster_1; median days-of-stock 12.1 (6.0-57.2)",
+      "trend_description": "consumption up 72% vs own baseline across 2 facilities in cluster_2; median days-of-stock 12.1 (6.0-57.2)",
       "population_served_total": 257161,
       "recommended_transfers": [],
       "unmet_needs": [],
@@ -415,11 +422,11 @@
       "narrative": "Bangalore Pharmacy (and 2 nearby facilities) will stock out of Azithromycin in ~19 days (7-148 day range). MAA-HOSP has surplus 11km away; recommend transferring 9 units."
     },
     {
-      "alert_id": "alert_17",
+      "alert_id": "alert_19",
       "sku": "SKU24",
       "medicine_name": "Cefixime",
       "criticality_tier": "essential",
-      "cluster_id": "cluster_2",
+      "cluster_id": "cluster_3",
       "facilities_affected": [
         "CCU-PHARM",
         "CCU-PHC"
@@ -427,7 +434,7 @@
       "days_of_stock_estimate": 21.9,
       "ci_low": 6.4,
       "ci_high": 178.1,
-      "trend_description": "consumption up 74% vs own baseline across 2 facilities in cluster_2; median days-of-stock 21.9 (6.4-178.1)",
+      "trend_description": "consumption up 74% vs own baseline across 2 facilities in cluster_3; median days-of-stock 21.9 (6.4-178.1)",
       "population_served_total": 101243,
       "recommended_transfers": [
         {
@@ -506,11 +513,11 @@
       "narrative": "Bangalore Pharmacy (and 1 nearby facility) will stock out of Chloroquine in ~24 days (11-273 day range). BLR-PHC has surplus 4km away; recommend transferring 12 units."
     },
     {
-      "alert_id": "alert_18",
+      "alert_id": "alert_14",
       "sku": "SKU26",
       "medicine_name": "Amoxicillin",
       "criticality_tier": "essential",
-      "cluster_id": "cluster_3",
+      "cluster_id": "cluster_1",
       "facilities_affected": [
         "BOM-HOSP",
         "BOM-PHC"
@@ -518,7 +525,7 @@
       "days_of_stock_estimate": 20.9,
       "ci_low": 13.1,
       "ci_high": 51.5,
-      "trend_description": "consumption up 43% vs own baseline across 2 facilities in cluster_3; median days-of-stock 20.9 (13.1-51.5)",
+      "trend_description": "consumption up 43% vs own baseline across 2 facilities in cluster_1; median days-of-stock 20.9 (13.1-51.5)",
       "population_served_total": 280560,
       "recommended_transfers": [],
       "unmet_needs": [],
@@ -707,7 +714,7 @@
     {
       "sku": "SKU54",
       "n_facilities_affected": 4,
-      "total_unmet_deficit": 80.3,
+      "total_unmet_deficit": 67.3,
       "facility_ids": [
         "BLR-PHARM",
         "BLR-PHC",
@@ -719,16 +726,13 @@
     },
     {
       "sku": "SKU1",
-      "n_facilities_affected": 8,
-      "total_unmet_deficit": 43.6,
+      "n_facilities_affected": 5,
+      "total_unmet_deficit": 28.8,
       "facility_ids": [
-        "BOM-PHC",
         "DEL-HOSP",
         "DEL-PHARM",
         "DEL-PHC",
-        "HBX-PHC",
         "JAI-HOSP",
-        "NSK-HOSP",
         "RDP-PHC"
       ],
       "medicine_name": "Paracetamol",
@@ -765,19 +769,6 @@
         "CCU-PHARM"
       ],
       "medicine_name": "Aspirin",
-      "criticality_tier": "essential"
-    },
-    {
-      "sku": "SKU0",
-      "n_facilities_affected": 4,
-      "total_unmet_deficit": 14.4,
-      "facility_ids": [
-        "HBX-PHC",
-        "HYD-HOSP",
-        "HYD-PHC",
-        "IXM-PHC"
-      ],
-      "medicine_name": "Amoxicillin",
       "criticality_tier": "essential"
     },
     {
